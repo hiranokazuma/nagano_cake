@@ -1,79 +1,43 @@
 
-<body class="d-flex flex-column vh-100">
-  <header class="shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-            
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to '商品一覧', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '会員一覧', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '注文履歴一覧', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ジャンル一覧', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'About', user_path(current_user.id), class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '商品一覧', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-            </li>
-          <% end %>
-          </ul>
+
+  <div class="container">
+    <div class="d-grid gap-2 col-5 mx-auto">
+    <h2>管理者　ログイン</h2>
+    </div>
+    <div class="row">
+      <div class="d-grid gap-2 col-5 mx-auto">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %>
         </div>
       </div>
-    </nav>
-  </header>
-
-  <h2>Log in</h2>
-  
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
-  
-    <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+    <div class="row">
+      <div class="d-grid gap-2 col-5 mx-auto">
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password", size: 30 %>
+        </div>
       </div>
-    <% end %>
-  
-    <div class="actions">
-      <%= f.submit "Log in" %>
     </div>
-  <% end %>
-  
+    <br />
+    <div class="row">
+      <div class="d-grid gap-2 col-5 mx-auto">
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+      </div>
+    </div>
+    <% end %>
+    <br />
+    <div class="row">
+        <div class="d-grid gap-2 col-5 mx-auto">
+          <%= f.submit "ログイン", class: "btn btn-lg btn-primary btn-block",notice: "Welcome! You have Log in successfully." %>
+        </div>
+      <% end %>
+    </div>
   <%= render "admin/shared/links" %>
-
-  <footer>
-  </footer>
-</body>
+  </div>
