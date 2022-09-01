@@ -1,2 +1,27 @@
 <h1>Admin::Genres#edit</h1>
 <p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container">
+<h2>ジャンル編集</h2>
+<br>
+</div>
+  <div class="container mt-5">
+    <%= form_with model: @genre, url: admin_genre_path, class: "form-inline" do |f| %>
+      <% if @genre.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @genre.errors.count %>errors prohibited this genre from being saved:</h2>
+        <ul>
+          <% @genre.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <div class="form-group mr-5">
+        <label for="genre_name">ジャンル名</label>
+      </div>
+      <div class="form-group mr-5">
+        <%= f.text_field :name, class: "form-control", autocomplete: 'off'%>
+      </div>
+        <%= f.submit '　変更を保存　', class: "btn btn-success btn-lg"%>
+    <% end %>
+  </div>

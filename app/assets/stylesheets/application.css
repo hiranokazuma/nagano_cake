@@ -303,3 +303,7 @@ table {
 thead {
     background-color: grey;
 }
+.same-width-list {
+  width: 200px;
+  height: 40px;
+}
