@@ -4,7 +4,17 @@
     <div class="container">
     <h2>商品新規登録</h2>
     <br>
-    <%= form_with model: @item do |f| %>
+    <%= form_with model: @item, url: admin_items_path do |f| %>
+        <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @item.errors.count %>errors prohibited this genre from being saved:</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
         <div class="form-group row">
           <div class="col-sm-2">
           <label for="item_image">商品画像</label>
@@ -59,14 +69,22 @@
         <div class="col-sm-2">
         <%= f.label :is_active, "販売ステータス", {class: "form-label"} %>
         </div>
-      <div class="col-sm-5 btn-group" data-toggle="buttons">
-        <label class="btn btn-outline-primary" style="width:50%">
-          <%= f.radio_button :is_active, 0, {checked: true} %>販売中
-        </label>
-        <label class="btn btn-outline-danger" style="width:50%">
-          <%= f.radio_button :is_active, 1, {} %>販売停止中
-        </label>
+        <div class="col-sm-5 btn-group" data-toggle="buttons">
+          <label class="btn btn-outline-primary" style="width:50%">
+            <%= f.radio_button :is_active, 0, {checked: true} %>販売中
+          </label>
+          <label class="btn btn-outline-danger" style="width:50%">
+            <%= f.radio_button :is_active, 1, {} %>販売停止中
+          </label>
+        </div>
       </div>
+    <br>
+      <div class="form-group row">
+        <div class="col-sm-2">
+          </div>
+        <div class="col-sm-5">
+          <%= f.submit '　新規登録　', class: "btn btn-success btn-lg btn-block" %>
+        </div>
       </div>
     <% end %>
     </div>
