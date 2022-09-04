@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    root to: 'public/homes#top'
+    root to: 'homes#top'
 
     resources :addresses
     # get 'addresses/index'
