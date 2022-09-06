@@ -3,23 +3,16 @@
 <div class="container">
   <h2>商品詳細</h2>
   <br>
-</div>
+    <div class="row">
+      <div class="col-sm-4">
 
-<div class="container">
-      <div class="row">
-        <div class="col-sm-2">
-        <label for="item_image">商品画像</label>
-        </div>
-        <div class="col-sm-5">
-        <%= image_tag (@item), size: "320x240" %>
-        </div>
+        <%= image_tag @item.image, size: "280x260" %>
+
       </div>
-    <br>
-</div>
 
-<div class="container">
-      <div class="row">
-        <div class="col-sm-2">
+      <div class="col-sm-8">
+        <div class="row">
+        <div class="col-sm-3">
         <label for="item_name">商品名</label>
         </div>
         <div class="col-sm-5">
@@ -29,7 +22,7 @@
     <br>
 
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
         <label for="item_introduction">商品説明</label>
         </div>
         <div class="col-sm-5">
@@ -39,7 +32,7 @@
     <br>
 
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
         <label for="genre_name">ジャンル名</label>
         </div>
         <div class="col-sm-5">
@@ -49,24 +42,24 @@
     <br>
 
       <div class="row">
-        <div class="col-sm-2">
-        <label for="item_price">税抜価格</label>
+        <div class="col-sm-3">
+        <label for="item_price">税込価格(税抜価格)</label>
         </div>
         <div class="col-sm-5">
-        　<%= @item.price %>円
+         <%=( @item.price * 1.1).floor %>円(<%= @item.price %>円)
         </div>
       </div>
     <br>
 
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
         <label for="item_is_active">販売ステータス</label>
         </div>
         <div class="col-sm-5">
           <% if @item.is_active %>
-            販売中
+            <b class="text-success">販売中</b>
           <% else %>
-            販売停止中
+            <b class="text-danger">販売停止中</b>
           <% end %>
         </div>
       </div>
@@ -80,5 +73,6 @@
         </div>
       </div>
     <br>
-
+  </div>
+  </div>
 </div>

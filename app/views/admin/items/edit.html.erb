@@ -1,2 +1,91 @@
 <h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+
+ <div class="container">
+    <h2>商品編集</h2>
+    <br>
+    <%= form_with model: @item, url: admin_item_path(@item) do |f| %>
+        <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @item.errors.count %>errors prohibited this genre from being saved:</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div class="form-group row">
+          <div class="col-sm-2">
+          <label for="item_image">商品画像</label>
+          </div>
+          <div class="col-sm-5">
+          <%= f.file_field :image, class: "form-control-file image", placeholder: "商品画像", accept: "image/*" %>
+          </div>
+        </div>
+    <br>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+          <label for="item_name">商品名</label>
+          </div>
+          <div class="col-sm-5">
+          <%= f.text_field :name, class: "form-control item_name", size: 40 %>
+          </div>
+        </div>
+    <br>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+          <label for="item_introduction">商品説明</label>
+          </div>
+          <div class="col-sm-5">
+          <%= f.text_area :introduction, class: "form-control item_introduction", size: "42x10" %>
+          </div>
+        </div>
+    <br>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+          <label for="genre_name">ジャンル名</label>
+          </div>
+          <div class="col-sm-5">
+          <%= f.collection_select :genre_id, Genre.all, :id, :name,  {}, {class: 'form-control' } %>
+          </div>
+        </div>
+    <br>
+
+        <div class="form-group row">
+          <div class="col-sm-2">
+          <label for="item_price">税抜価格</label>
+          </div>
+          <div class="col-sm-5">
+          <%= f.text_field :price, class: "form-control item_price", size: 40 %>
+          </div>
+        </div>
+    <br>
+
+      <div class="form-group row">
+        <div class="col-sm-2">
+        <%= f.label :is_active, "販売ステータス", {class: "form-label"} %>
+        </div>
+        <div class="col-sm-5 btn-group" data-toggle="buttons">
+          <label class="btn btn-outline-primary" style="width:50%">
+            <%= f.radio_button :is_active, 1, {checked: true} %>販売中
+          </label>
+          <label class="btn btn-outline-danger" style="width:50%">
+            <%= f.radio_button :is_active, 0, {} %>販売停止中
+          </label>
+        </div>
+      </div>
+    <br>
+
+      <div class="form-group row">
+        <div class="col-sm-2">
+          </div>
+        <div class="col-sm-5">
+          <%= f.submit '　変更を保存　', class: "btn btn-success btn-lg btn-block" %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+    <br>

@@ -4,9 +4,9 @@
     <div class="d-grid gap-2 col-5 mx-auto">
     <h2>管理者　ログイン</h2>
     </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row">
       <div class="d-grid gap-2 col-5 mx-auto">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %>

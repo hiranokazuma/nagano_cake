@@ -29,12 +29,20 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:notice] = "変更を保存しました。"
+      redirect_to admin_items_path(@item)
+    else
+      flash[:arlet] = "変更の保存に失敗しました。"
+      render :edit
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active)
+    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
   end
 
 end
