@@ -5,9 +5,11 @@
   <br>
     <div class="row">
       <div class="col-sm-4">
-
+      <% if @item.image.attached? %>
         <%= image_tag @item.image, size: "280x260" %>
-
+      <% else %>
+        <%= image_tag 'default-image', size: "200x200" %>
+      <% end %>
       </div>
 
       <div class="col-sm-8">

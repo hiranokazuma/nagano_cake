@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     # get 'homes/top'
     get 'homes/about'  => "public/homes#about", as: "about"
 
-
   scope module: :public do
     root to: 'homes#top'
 
@@ -28,19 +27,19 @@ Rails.application.routes.draw do
     # get 'orders/index'
     # get 'orders/show'
 
-    resources :cart_items
+    resources :cart_items, except:[:new, :show, :edit]
     # get 'cart_items/index'
     # get 'cart_items/update'
     # get 'cart_items/create'
 
-    resources :customers
-    # get 'customers/show'
-    # get 'customers/edit'
-    # get 'customers/update'
-    # get 'customers/unscribe'
-    # get 'customers/withdraw'
+    resource :customers
+    get 'customers/mypage' => 'customers#show'
+    get 'customers/infomation/edit' => 'customers/infomation#edit'
+    patch 'customers/infomation' => 'customers#update'
+    get 'customers/unscribe' => 'customers#update'
+    patch 'customers/withdraw' => 'customers#destroy'
 
-    resources :items
+    resources :items, only: [:index, :show]
     # get 'items/index'
     # get 'items/show'
 
