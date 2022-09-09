@@ -1,5 +1,4 @@
 <h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
 
 <div class="container">
   <h2>会員一覧</h2>
@@ -18,10 +17,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @customers.each do |item| %>
+      <% @customers.each do |customer| %>
       <tr>
         <td><%= customer.id %></td>
-        <td><%= link_to customer.last_name, customer.first_name, admin_customer_path(customer.id) %></td>
+        <td><%= link_to customer.full_name, admin_customer_path(customer) %></td>
         <td><%= customer.email %></td>
         <td><% if customer.is_active %>
             <b class="text-success">有効</b>
@@ -31,6 +30,7 @@
         </td>
       </tr>
       <% end %>
+      <%= paginate @customers %>
     </tbody>
   </table>
 </div>

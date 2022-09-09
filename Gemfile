@@ -64,3 +64,5 @@ gem 'net-pop'
 gem 'enum_help'
 
 gem 'devise-i18n'
+
+gem 'kaminari','~> 1.2.1'
