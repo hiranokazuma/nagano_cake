@@ -1,5 +1,35 @@
+<h1>Admin::Homes#top</h1>
+<p>Find me in app/views/admin/homes/top.html.erb</p>
 
+<div class="container">
+<h2>注文履歴一覧</h2>
+<br>
+<div class="container mt-5">
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
 
-    <h1>Admin::Homes#top</h1>
-    <p>Find me in app/views/admin/homes/top.html.erb</p>
-  </header>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.created_at, order_path(order.id) %></td>
+        <td><%= order.name %></td>
+        <td><%= cart_item.amount %></td>
+        <td><% if order.status %>
+            <b class="text-success">販売中</b>
+            <% else %>
+            <b class="text-danger">販売停止中</b>
+            <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

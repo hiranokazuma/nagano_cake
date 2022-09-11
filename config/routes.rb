@@ -13,13 +13,15 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
 
-    resources :addresses
+    resources :addresses, except:[:show, :new]
     # get 'addresses/index'
     # get 'addresses/edit'
     # get 'addresses/create'
     # get 'addresses/update'
 
-    resources :orders
+    resources :orders, except:[:update, :edit, :destroy]
+      post 'orders/confirm' => 'orders#confirm'
+      get 'orders/complete' => 'orders#complete'
     # get 'orders/new'
     # get 'orders/confirm'
     # get 'orders/complete'
@@ -31,13 +33,19 @@ Rails.application.routes.draw do
     # get 'cart_items/index'
     # get 'cart_items/update'
     # get 'cart_items/create'
+      delete 'cart_items/destroy_all' => 'cart_items#destroy'
 
-    resource :customers
-    get 'customers/mypage' => 'customers#show'
-    get 'customers/infomation/edit' => 'customers/infomation#edit'
-    patch 'customers/infomation' => 'customers#update'
-    get 'customers/unscribe' => 'customers#update'
-    patch 'customers/withdraw' => 'customers#destroy'
+      get 'customers/mypage' => 'customers#show'
+      get 'customers/infomation/edit' => 'customers/infomation#edit'
+      patch 'customers/infomation' => 'customers#update'
+      get 'customers/unscribe' => 'customers#update'
+      patch 'customers/withdraw' => 'customers#destroy'
+    # resource :customers
+    # get 'customers/mypage', to: 'customers#show', as: :customers
+    # get 'customers/infomation/edit', to: 'customers/infomation#edit', as: :customers
+    # patch 'customers/infomation', to: 'customers#update', as: :customers
+    # get 'customers/unscribe', to: 'customers#update', as: :customers
+    # patch 'customers/withdraw', to: 'customers#destroy', as: :customers
 
     resources :items, only: [:index, :show]
     # get 'items/index'
@@ -50,25 +58,25 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'order_details/update'
+    patch 'order_details/:id' => 'order_details#update'
 
-    get 'orders/show'
-    get 'orders/update'
+    get 'orders/:id' => 'orders#show'
+    patch 'orders/:id' => 'orders#update'
 
-    resources :customers
+    resources :customers, except:[:new, :create, :destroy]
     # get 'customers/index'
     # get 'customers/show'
     # get 'customers/edit'
     # get 'customers/update'
 
-    resources :genres
+    resources :genres, except:[:new, :show, :destroy]
 
     # get 'genres/index'
     # get 'genres/create'
     # get 'genres/edit'
     # get 'genres/update'
 
-    resources :items
+    resources :items, except:[:destroy]
     # get 'items/index'
     # get 'items/new'
     # get 'items/create'
