@@ -209,15 +209,6 @@ form {
 
 input {
     writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
     text-rendering: auto;
     color: fieldtext;
     letter-spacing: normal;
@@ -251,14 +242,6 @@ input, button, select, optgroup, textarea {
     line-height: inherit;
 }
 
-input[type="hidden" i] {
-    appearance: none;
-    background-color: initial;
-    cursor: default;
-    display: none !important;
-    padding: initial;
-    border: initial;
-}
 button, input {
     overflow: visible;
 }

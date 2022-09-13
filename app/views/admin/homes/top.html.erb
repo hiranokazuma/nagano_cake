@@ -17,19 +17,8 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to order.created_at, order_path(order.id) %></td>
-        <td><%= order.name %></td>
-        <td><%= cart_item.amount %></td>
-        <td><% if order.status %>
-            <b class="text-success">販売中</b>
-            <% else %>
-            <b class="text-danger">販売停止中</b>
-            <% end %>
-        </td>
-      </tr>
-      <% end %>
+
     </tbody>
   </table>
+</div>
 </div>

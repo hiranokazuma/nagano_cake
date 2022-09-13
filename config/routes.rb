@@ -40,12 +40,6 @@ Rails.application.routes.draw do
       patch 'customers/infomation' => 'customers#update'
       get 'customers/unscribe' => 'customers#update'
       patch 'customers/withdraw' => 'customers#destroy'
-    # resource :customers
-    # get 'customers/mypage', to: 'customers#show', as: :customers
-    # get 'customers/infomation/edit', to: 'customers/infomation#edit', as: :customers
-    # patch 'customers/infomation', to: 'customers#update', as: :customers
-    # get 'customers/unscribe', to: 'customers#update', as: :customers
-    # patch 'customers/withdraw', to: 'customers#destroy', as: :customers
 
     resources :items, only: [:index, :show]
     # get 'items/index'
@@ -86,8 +80,6 @@ Rails.application.routes.draw do
 
     get 'homes/top'
   end
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
