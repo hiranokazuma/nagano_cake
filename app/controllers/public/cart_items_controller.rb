@@ -1,20 +1,24 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = Cart_item.all
-    @cart_item = Cart_item.new
+    @cart_items = CartItem.all
+    @cart_item = CartItem.new
   end
 
   def update
   end
 
   def create
-    @cart_item = Cart_item.new(cart_item_params)
+    # @item = Item.find(cart_item_params[:item_id])
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
     if @cart_item.save
       flash[:notice] = "商品をカートに入れました。"
-      redirect_to item_path(@item)
+      redirect_to cart_items_path
     else
       flash[:arlet] = "商品がカートに入っていません。"
-      render item_path(@item)
+      @item = Item.find(params[:cart_item][:item_id])
+      @cart_item = CartItem.new
+      render "public/items/show"
     end
   end
 

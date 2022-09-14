@@ -1,9 +1,30 @@
-
-
 <h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
-  </header>
-<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-  <footer>
-  </footer>
-</body>
+<div class="container">
+  <div class="row">
+  <%= image_tag 'main-vs', size: "1100x480" %>
+  </div>
+<br>
+<br>
+  <div class="row">
+    <h2>新着商品</h2>
+  </div>
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-sm-3">
+      <%= link_to item_path(item.id) do %>
+      <% if item.image.attached? %>
+        <%= image_tag item.image, size: "260x180" %>
+      <% else %>
+        <%= image_tag 'default-image', size: "260x180" %>
+      <% end %>
+      <% end %>
+    <br>
+    <br>
+      <h5><%= item.name %></h5>
+    <br>
+      <h5><%= (item.price * 1.1).floor %>円(税込)</h5>
+    </div>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
+    @items = Item.all
+    @item = Item.new
     # @customer = Customer.find(params[:id])
   end
 
