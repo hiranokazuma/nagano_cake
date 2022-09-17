@@ -1,2 +1,44 @@
 <h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+  <br>
+  <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+    <% if @address.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @address.errors.count %>errors prohibited this address from being saved:</h2>
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="container">
+    <h2>配送先登録/一覧</h2>
+  <br>
+    <div class="row">
+      <div class="col-sm-3">
+        <h5>郵便番号(ハイフンなし)</h5>
+        <br>
+        <h5>住所</h5>
+        <br>
+        <h5>宛名</h5>
+        <br>
+      </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <h4><%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", autocomplete: "postal-code" %></h4>
+      </div>
+      <div class="form-group">
+        <h4><%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address", size: "40" %></h4>
+      </div>
+      <div class="form-group">
+        <h4><%= f.text_field :namespace, autofocus: true, placeholder: "令和道子" %></h4>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= f.submit '　新規登録　', class: "btn btn-success btn-lg" %>
+      </div>
+    </div>
+    </div>
+  </div>
+  <% end %>
