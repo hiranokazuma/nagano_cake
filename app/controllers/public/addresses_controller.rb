@@ -7,6 +7,7 @@ class Public::AddressesController < ApplicationController
 
   def edit
     @address = Address.find(params[:id])
+    @customer = current_customer.id
   end
 
   def create

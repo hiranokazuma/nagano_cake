@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    if @customer.update(current_customer)
+    if @customer.update(customer_params)
       flash[:notice] = "変更を保存しました。"
       redirect_to customers_mypage_path(@customer)
     else
@@ -18,11 +18,18 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  def unscribe
+  def unsubscribe
     @customer = current_customer
   end
 
   def withdraw
     @customer = current_customer
   end
+
+  private
+
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :passwords, :postal_code, :address, :telephone_number, :is_deleted)
+  end
+
 end

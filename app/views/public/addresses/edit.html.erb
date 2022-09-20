@@ -1,2 +1,45 @@
 <h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+  <div class="container">
+    <h2>配送先編集</h2>
+  <br>
+    <%= form_with model: @address, url: address_path do |f| %>
+    <%= f.hidden_field :customer_id, :value => @current_customer.id %>
+    <% if @address.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @address.errors.count %>errors prohibited this address from being saved:</h2>
+        <ul>
+          <% @address.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-3">
+        <h5>郵便番号(ハイフンなし)</h5>
+        <br>
+        <h5>住所</h5>
+        <br>
+        <h5>宛名</h5>
+        <br>
+      </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <h4><%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", autocomplete: "postal-code" %></h4>
+      </div>
+      <div class="form-group">
+        <h4><%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address", size: "40" %></h4>
+      </div>
+      <div class="form-group">
+        <h4><%= f.text_field :namespace, autofocus: true, placeholder: "令和道子" %></h4>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= f.submit '　変更を保存する　', class: "btn btn-success btn-lg" %>
+      </div>
+      <br>
+    </div>
+    <% end %>
+    </div>
+  </div>
