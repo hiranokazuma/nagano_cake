@@ -2,9 +2,20 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
     @cart_item = CartItem.new
+    @total_payment = 0
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      flash[:notice] = "変更を保存しました。"
+      redirect_to cart_items_path
+    else
+      flash[:arlet] = "変更の保存に失敗しました。"
+      render :index
+    end
+
+
   end
 
   def create
