@@ -43,9 +43,8 @@
             <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.hidden_field :name, :value => @item.name %>
             <%= f.select :amount, [["１個", 1], ["２個", 2], ["３個", 3], ["４個", 4], ["５個", 5], ["６個", 6], ["７個", 7], ["８個", 8], ["９個", 9], ["１０個", 10]], include_blank: "個数を選択して下さい"%>
-          <%= f.submit '　カートに入れる　', class: "btn btn-success btn-lg"%>
+          <%= f.submit '　カートに入れる　', class: "btn btn-success btn-lg ml-5"%>
           <% end %>
-
           </div>
         </div>
       </div>
