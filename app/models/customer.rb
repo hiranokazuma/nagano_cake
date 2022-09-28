@@ -31,4 +31,8 @@ class Customer < ApplicationRecord
     self.last_name_kana + " " + self.first_name_kana
   end
 
+  def customer_address
+    '〒' + postal_code + ' ' + address + ' ' + full_name
+  end
+
 end

@@ -4,32 +4,6 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-        ja:
-
-ja:
-  activerecord:
-    errors:
-      models:
-        customer:
-          attributes:
-            email:
-              blank: に内容が入力されていません。
-            password:
-              blank: に内容が入力されていません。
-            last_name:
-              blank: に内容が入力されていません。
-            first_name:
-              blank: に内容が入力されていません。
-            last_name_kana:
-              blank: に内容が入力されていません。
-            first_name_kana:
-              blank: に内容が入力されていません。
-            postal_code:
-              blank: に内容が入力されていません。
-            address:
-              blank: に内容が入力されていません。
-            telepone_number:
-              blank: に内容が入力されていません。
 
   activerecord:
     attributes:
@@ -181,10 +155,30 @@ ja:
       not_saved:
         one: エラーが発生したため %{resource} は保存されませんでした。
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
----
-ja:
+
   activerecord:
     errors:
+      models:
+        customer:
+          attributes:
+            email:
+              blank: に内容が入力されていません。
+            password:
+              blank: に内容が入力されていません。
+            last_name:
+              blank: に内容が入力されていません。
+            first_name:
+              blank: に内容が入力されていません。
+            last_name_kana:
+              blank: に内容が入力されていません。
+            first_name_kana:
+              blank: に内容が入力されていません。
+            postal_code:
+              blank: に内容が入力されていません。
+            address:
+              blank: に内容が入力されていません。
+            telepone_number:
+              blank: に内容が入力されていません。
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
