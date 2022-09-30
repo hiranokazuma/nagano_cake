@@ -9,13 +9,14 @@
   <table class="table table-bordered">
     <thead>
       <tr class="h5 table-secondary">
-        <th style="width: 30%">商品名</th>
-        <th style="width: 15%">単価(税込)</th>
-        <th style="width: 20%">数量</th>
-        <th style="width: 15%">小計(税込)</th>
+        <th style="width: 45%">商品名</th>
+        <th style="width: 20%">単価(税込)</th>
+        <th style="width: 10%">数量</th>
+        <th style="width: 25%">小計(税込)</th>
       </tr>
     </thead>
     <tbody>
+    <%= form_with model: @order, url: orders_complete_path, method: :post do |f| %>
       <% @cart_items.each do |cart_item| %>
       <tr class="h5">
         <td>
@@ -28,9 +29,9 @@
           <% end %>
           <%= cart_item.item.name %>
         </td>
-        <td><%= cart_item.item.with_tax_price %>円</td>
-        <td><%= cart_item.amount %></td>
-        <td><%= cart_item.subtotal %>円</td>
+        <td class="align-middle"><%= cart_item.item.with_tax_price %>円</td>
+        <td class="align-middle"><%= cart_item.amount %></td>
+        <td class="align-middle"><%= cart_item.subtotal %>円</td>
           <% @total_payment += cart_item.subtotal %>
       </tr>
       <% end %>
@@ -65,7 +66,7 @@
       <div class="font-weight-bold h4">支払方法</div>
     </div>
     <div class="col-10 h5">
-      <%= Order.payment_methods_i18n[:credit_card] %>
+      <%= Order.payment_methods_i18n[@order.payment_method] %>
     </div>
   <br>
   <br>
@@ -74,6 +75,20 @@
     <div class="col-2">
       <div class="font-weight-bold h4">お届け先</div>
     </div>
-
+    <div class="col-10 h5">
+      <%= @order.postal_code %>
+      <%= @order.address %>
+      <%= @order.name %>
+    </div>
+    </div>
+  <br>
+  <br>
+    <div class="d-grid gap-2 col-3 mx-auto">
+      <%= f.submit "　注文を確定する　", class: "btn btn-success btn-lg btn-block" %>
+    </div>
+  <% end %>
   </div>
+  <br>
+  <br>
+  <br>
 </div>

@@ -4,6 +4,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.new
     @total_payment = 0
     @item = Item.new
+
   end
 
   def update
@@ -18,22 +19,23 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
-    if @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-      @cart_item.amount += params[:cart_item][:amount].to_i
-      @cart_item.save
-      flash[:notice] = "商品をカートに入れました。"
-      redirect_to cart_items_path
-    elsif
-      @cart_item.save
+
+    @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    if @cart_item
+      @cart_item.update(amount: @cart_item.amount + params[:cart_item][:amount].to_i)
       flash[:notice] = "商品をカートに入れました。"
       redirect_to cart_items_path
     else
-      flash[:arlet] = "商品がカートに入っていません。"
-      @item = Item.find(params[:cart_item][:item_id])
-      @cart_item = CartItem.new
-      render "public/items/show"
+      @cart_item = CartItem.new(cart_item_params)
+      @cart_item.customer_id = current_customer.id
+      @cart_item.save
+      flash[:notice] = "商品をカートに入れました。"
+      redirect_to cart_items_path
+    # else
+    #   flash[:arlet] = "商品がカートに入っていません。"
+    #   @item = Item.find(params[:cart_item][:item_id])
+    #   @cart_item = CartItem.new
+    #   render "public/items/show"
     end
   end
 
