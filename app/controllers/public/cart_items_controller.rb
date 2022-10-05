@@ -19,7 +19,6 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-
     @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
     if @cart_item
       @cart_item.update(amount: @cart_item.amount + params[:cart_item][:amount].to_i)
@@ -31,11 +30,6 @@ class Public::CartItemsController < ApplicationController
       @cart_item.save
       flash[:notice] = "商品をカートに入れました。"
       redirect_to cart_items_path
-    # else
-    #   flash[:arlet] = "商品がカートに入っていません。"
-    #   @item = Item.find(params[:cart_item][:item_id])
-    #   @cart_item = CartItem.new
-    #   render "public/items/show"
     end
   end
 

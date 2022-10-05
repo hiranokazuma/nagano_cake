@@ -14,10 +14,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
 
     resources :addresses, except:[:show, :new]
-
+    
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/complete' => 'orders#complete'
     resources :orders, except:[:update, :edit, :destroy]
-      post 'orders/confirm' => 'orders#confirm'
-      get 'orders/complete' => 'orders#complete'
 
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, except:[:new, :show, :edit]

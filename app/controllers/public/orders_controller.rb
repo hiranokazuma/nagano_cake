@@ -1,11 +1,7 @@
 class Public::OrdersController < ApplicationController
+
   def new
       @order = Order.new
-    # if @cart_items == nil
-    #   render "public/cart_items/index"
-    # else
-    #   redirect_to new_order_path
-    # end
   end
 
   def confirm
@@ -15,36 +11,51 @@ class Public::OrdersController < ApplicationController
     @item = Item.new
     @order = Order.new(order_params)
 
-    if params[:order][:address_id] == 0
+    if params[:order][:address_number] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.first_name + current_customer.last_name
 
-    elsif params[:order][:address_id] == 1
-      Address.find(params[:order][:address_id])
-
-    elsif params[:order][:address_id] == 2
+    elsif params[:order][:address_number] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
-      @order.name = @address.name
+      @order.name = @address.namespace
+
     end
   end
 
   def complete
+    @order = Order.new
   end
 
   def create
-    @order = Order.new
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.order_id = @order.id
+      @order_detail.price = cart_item.item.price
+      @order_detail.amount = cart_item.amount
+      @order_detail.save
+    end
+    redirect_to orders_complete_path
   end
 
   def index #注文履歴一覧
-    @orders = Order.all
-    @order = Order.new
+    @orders = current_customer.orders
+    @cart_items = current_customer.cart_items
+    # @order = Order.new
   end
 
   def show #注文履歴詳細
-    # @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    @orders = current_customer.orders
+    @cart_items = current_customer.cart_items
+    @order_detail = current_customer.order_detail
   end
 
   private

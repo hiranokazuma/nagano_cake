@@ -66,8 +66,10 @@
   </div>
   <br>
   <br>
+   <% if @cart_items != [] %>
     <div class="d-grid gap-2 col-3 mx-auto">
       <%= link_to " 情報入力に進む ", new_order_path, class: "btn btn-success text-light btn-lg btn-block" %>
     </div>
+   <% end %>
   <br>
 </div>

@@ -1,2 +1,76 @@
 <h1>Public::Orders#show</h1>
 <p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+<h2>注文履歴詳細</h2>
+<br>
+<br>
+  <div class="row">
+    <div class="col-7">
+      <table class="table table-bordered">
+        <thead>
+        </thead>
+        <tbody>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">注文日</td>
+            <td><%= @order.created_at %></td>
+          </tr>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">配送先</td>
+            <td><%= @order.postal_code %><%= @order.address %><%= @order.name %></td>
+          </tr>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">支払方法</td>
+            <td><%= Order.payment_methods_i18n[@order.payment_method] %></td>
+          </tr>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">ステータス</td>
+            <td><%= @order.status %>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-5">
+      <table class="table table-bordered">
+        <thead>
+        </thead>
+        <tbody>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">商品合計</td>
+            <td><%= @total_payment %></td>
+          </tr>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">配送料</td>
+            <td><%= @order.shipping_cost %></td>
+          </tr>
+          <tr class="h5">
+            <td class="table-secondary font-weight-bold">ご請求額</td>
+            <td><%= @total_payment += @order.shipping_cost %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-bordered">
+        <% @orders.each do |order| %>
+        <thead>
+          <tr class="h5 table-secondary">
+            <th style="width: 10%">商品</th>
+            <th style="width: 35%">単価(税込)</th>
+            <th style="width: 15%">個数</th>
+            <th style="width: 10%">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="h5">
+            <td><%= @cart_items.name %></td>
+            <td><%= @total_payment %></td>
+            <td><%= @order_detail.amount %></td>
+            <td><%= @order_detail.price %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
