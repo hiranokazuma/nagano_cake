@@ -21,7 +21,7 @@
           <tbody>
               <tr><th width="25%">氏名</th><td width="75%"><h4><%= @customer.full_name %></h4></td></tr>
               <tr><th>カナ</th><td><h4><%= @customer.full_name_kana %></h4></td></tr>
-              <tr><th>郵便番号</th><td><h4><%= @customer.postal_code %></h4></td></tr>
+              <tr><th>郵便番号</th><td><h4>〒<%= @customer.postal_code %></h4></td></tr>
               <tr><th>住所</th><td><h4><%= @customer.address %></h4></td></tr>
               <tr><th>電話番号</th><td><h4><%= @customer.telephone_number %></h4></td></tr>
               <tr><th>メールアドレス</th><td><h4><%= @customer.email %></h4></td></tr>

@@ -34,7 +34,7 @@
       <br>
       <br>
         <div class="row">
-            <h3><%= (@item.price * 1.1).floor %>円(税込)</h3>
+            <h3><%= (@item.price * 1.1).floor.to_s(:delimited) %>円(税込)</h3>
         </div>
       <br>
         <div class="row">

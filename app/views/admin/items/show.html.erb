@@ -48,7 +48,7 @@
         <label for="item_price">税込価格(税抜価格)</label>
         </div>
         <div class="col-sm-5">
-         <%=( @item.price * 1.1).floor %>円(<%= @item.price %>円)
+         <%=( @item.price * 1.1).floor.to_s(:delimited) %>円(<%= @item.price.to_s(:delimited) %>円)
         </div>
       </div>
     <br>

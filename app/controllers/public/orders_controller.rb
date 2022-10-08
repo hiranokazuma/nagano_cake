@@ -43,6 +43,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.save
     end
     redirect_to orders_complete_path
+    @cart_items.destroy_all
   end
 
   def index #注文履歴一覧
@@ -53,9 +54,11 @@ class Public::OrdersController < ApplicationController
 
   def show #注文履歴詳細
     @order = Order.find(params[:id])
-    @orders = current_customer.orders
-    @cart_items = current_customer.cart_items
-    @order_detail = current_customer.order_detail
+    @order_details = @order.order_details
+    @order_submit = 0
+    @order_details.each do |order_detail|
+      @order_submit += order_detail.subtotal
+    end
   end
 
   private

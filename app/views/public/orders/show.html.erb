@@ -5,18 +5,18 @@
 <br>
 <br>
   <div class="row">
-    <div class="col-7">
+    <div class="col-8">
       <table class="table table-bordered">
         <thead>
         </thead>
         <tbody>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">注文日</td>
-            <td><%= @order.created_at %></td>
+            <td><%= @order.created_at.to_s(:datetime_jp) %></td>
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">配送先</td>
-            <td><%= @order.postal_code %><%= @order.address %><%= @order.name %></td>
+            <td>〒<%= @order.postal_code %><br><%= @order.address %><br><%= @order.name %></td>
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">支払方法</td>
@@ -24,27 +24,27 @@
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">ステータス</td>
-            <td><%= @order.status %>円</td>
+            <td><%= Order.statuses_i18n[@order.status] %></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-5">
+    <div class="col-4">
       <table class="table table-bordered">
         <thead>
         </thead>
         <tbody>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">商品合計</td>
-            <td><%= @total_payment %></td>
+            <td><%= @order_submit.to_s(:delimited) %>円</td>
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">配送料</td>
-            <td><%= @order.shipping_cost %></td>
+            <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">ご請求額</td>
-            <td><%= @total_payment += @order.shipping_cost %></td>
+            <td><%= (@order_submit + @order.shipping_cost).to_s(:delimited) %>円</td>
           </tr>
         </tbody>
       </table>
@@ -52,25 +52,33 @@
   </div>
 <br>
   <div class="row">
-    <div class="col-8">
+    <div class="col-9">
       <table class="table table-bordered">
-        <% @orders.each do |order| %>
         <thead>
           <tr class="h5 table-secondary">
-            <th style="width: 10%">商品</th>
-            <th style="width: 35%">単価(税込)</th>
-            <th style="width: 15%">個数</th>
-            <th style="width: 10%">小計</th>
+            <th style="width: 50%">商品</th>
+            <th style="width: 20%">単価(税込)</th>
+            <th style="width: 10%">個数</th>
+            <th style="width: 20%">小計</th>
           </tr>
         </thead>
         <tbody>
+        <% @order_details.each do |order_detail| %>
           <tr class="h5">
-            <td><%= @cart_items.name %></td>
-            <td><%= @total_payment %></td>
-            <td><%= @order_detail.amount %></td>
-            <td><%= @order_detail.price %></td>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.with_tax_price.to_s(:delimited) %>円</td>
+            <td><%= order_detail.amount.to_s(:delimited) %></td>
+            <td><%= order_detail.subtotal.to_s(:delimited) %>円</td>
           </tr>
+        <% end %>
         </tbody>
       </table>
-      <% end %>
     </div>
+  </div>
+  <br>
+  <div class="d-grid gap-2 col-3 mx-auto">
+    <%= link_to "　一覧へ戻る　", orders_path, class: "btn btn-primary text-light btn-lg" %>
+  </div>
+  <br>
+  <br>
+</div>

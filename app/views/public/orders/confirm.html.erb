@@ -27,9 +27,9 @@
           <% end %>
           <%= cart_item.item.name %>
         </td>
-        <td class="align-middle"><%= cart_item.item.with_tax_price %>円</td>
+        <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %>円</td>
         <td class="align-middle"><%= cart_item.amount %></td>
-        <td class="align-middle"><%= cart_item.subtotal %>円</td>
+        <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %>円</td>
           <% @total_payment += cart_item.subtotal %>
       </tr>
       <% end %>
@@ -43,15 +43,15 @@
         <tbody>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">送料</td>
-            <td><%= @order.shipping_cost %>円</td>
+            <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">商品合計</td>
-            <td><%= @total_payment %>円</td>
+            <td><%= @total_payment.to_s(:delimited) %>円</td>
           </tr>
           <tr class="h5">
             <td class="table-secondary font-weight-bold">請求金額</td>
-            <td><%= @total_payment += @order.shipping_cost %>円</td>
+            <td><%= (@total_payment += @order.shipping_cost).to_s(:delimited) %>円</td>
           </tr>
         </tbody>
       </table>
