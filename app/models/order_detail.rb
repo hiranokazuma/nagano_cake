@@ -12,6 +12,8 @@ class OrderDetail < ApplicationRecord
       with_tax_price * amount
   end
 
-
+  def full_name
+    self.last_name + " " + self.first_name
+  end
 
 end

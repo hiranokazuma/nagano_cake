@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
 
     resources :addresses, except:[:show, :new]
-    
+
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
     resources :orders, except:[:update, :edit, :destroy]
@@ -40,9 +40,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    patch 'order_details/:id' => 'order_details#update'
 
     get 'orders/:id' => 'orders#show'
+    patch 'order_details/:id' => 'order_details#update'
     patch 'orders/:id' => 'orders#update'
 
     resources :customers, except:[:new, :create, :destroy]
