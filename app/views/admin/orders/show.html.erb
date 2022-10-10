@@ -1,2 +1,37 @@
 <h1>Admin::Orders#show</h1>
 <p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+<h2>注文履歴詳細</h2>
+<br>
+  <div class="row">
+    <div class="col-2 h5 font-weight-bold py-1">購入者</div>
+    <div class="col-10 h5 py-1"><%= @order.name %></div>
+    <div class="col-2 h5 font-weight-bold py-1">注文日</div>
+    <div class="col-10 h5 py-1"><%= @order.created_at.to_s(:date_jp) %></div>
+    <div class="col-2 h5 font-weight-bold py-1">配送先</div>
+    <div class="col-10 h5 py-1">〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></div>
+    <div class="col-2 h5 font-weight-bold py-1">支払方法</div>
+    <div class="col-10 h5 py-1"><%= @order.payment_method_i18n %></div>
+    <div class="col-2 h5 font-weight-bold py-1">注文ステータス</div>
+    <div class="col-10 h5 py-1">
+      <%= form_with model: @order, url: admin_path(@order), method: :patch do |f| %>
+      <%= f.select :status, [["　入金待ち", 0],["　入金確認", 1],["　製作中", 2],["　発送準備中", 3],["　発送済み",4]] %>
+      <%= f.submit "更新", class: "btn btn-success ml-4" %>
+      <% end %>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="h5 table-secondary">
+          <th style="width: 32%">商品名</th>
+          <th style="width: 13%">単価(税込)</th>
+          <th style="width: 8%">数量</th>
+          <th style="width: 13%">小計</th>
+          <th style="width: 34%">製作ステータス</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>

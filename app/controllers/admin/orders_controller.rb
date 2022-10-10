@@ -5,7 +5,7 @@ class Admin::OrdersController < ApplicationController
     @order_details = @order.order_details
     @order_submit = 0
     @order_details.each do |order_detail|
-    @order_submit += order_detail.subtotal
+      @order_submit += order_detail.subtotal
     end
   end
 

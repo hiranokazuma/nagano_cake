@@ -14,14 +14,19 @@
       </tr>
     </thead>
     <tbody>
-    <% @order_details.each do |order_detail| %>
+    <% @orders.each do |order| %>
       <tr class="h5">
-        <th><%= link_to admin_path(@orders), method: :get do %>
-        <%= order_detail.created_at.to_s(:datetime_jp) %>
+        <th><%= link_to admin_path(order), method: :get do %>
+        <%= order.created_at.to_s(:datetime_jp) %>
         <% end %></th>
-        <th><%= order_detail.order.name %></th>
-        <th><%= order_detail.amount %></th>
-        <th><%= order_detail.order.status_i18n %></th>
+        <th><%= order.name %></th>
+
+        <th><% order.order_details.each do |order_detail| %>
+        <% @total_amount = 0 %>
+        <% @total_amount += order_detail.amount %>
+        <%= @total_amount %>
+        <% end %></th>
+        <th><%= order.status_i18n %></th>
       </tr>
     <% end %>
     </tbody>
