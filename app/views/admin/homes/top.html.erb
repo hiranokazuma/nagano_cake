@@ -1,6 +1,4 @@
 <h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
-
 <div class="container">
 <h2>注文履歴一覧</h2>
 <br>
@@ -20,12 +18,11 @@
         <%= order.created_at.to_s(:datetime_jp) %>
         <% end %></th>
         <th><%= order.name %></th>
-
         <th><% order.order_details.each do |order_detail| %>
-        <% @total_amount = 0 %>
-        <% @total_amount += order_detail.amount %>
-        <%= @total_amount %>
-        <% end %></th>
+          <% @total_amount = 0 %>
+          <% @total_amount += order_detail.amount %>
+          <%= @total_amount %>
+          <% end %></th>
         <th><%= order.status_i18n %></th>
       </tr>
     <% end %>

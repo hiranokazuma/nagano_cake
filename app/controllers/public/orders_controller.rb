@@ -49,7 +49,6 @@ class Public::OrdersController < ApplicationController
   def index #注文履歴一覧
     @orders = current_customer.orders
     @cart_items = current_customer.cart_items
-    # @order = Order.new
   end
 
   def show #注文履歴詳細
