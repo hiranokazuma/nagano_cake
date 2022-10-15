@@ -2,27 +2,23 @@
 
 <div class="container">
   <h2>会員一覧</h2>
-</div>
 <br>
-
-<div class="container mt-5">
-  <table class="table table-inverse">
-    <thead>
+  <table class="table table-bordered">
+    <thead class="h5 table-secondary">
       <tr>
         <th>会員ID</th>
         <th>氏名</th>
         <th>メールアドレス</th>
         <th>ステータス</th>
-        <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
       <% @customers.each do |customer| %>
-      <tr>
+      <tr class="h5">
         <td><%= customer.id %></td>
         <td><%= link_to customer.full_name, admin_customer_path(customer) %></td>
         <td><%= customer.email %></td>
-        <td><% if customer.is_active %>
+        <td><% if customer.is_deleted %>
             <b class="text-success">有効</b>
             <% else %>
             退会
@@ -34,3 +30,4 @@
     </tbody>
   </table>
 </div>
+<br>

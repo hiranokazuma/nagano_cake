@@ -39,7 +39,7 @@
           <th><%= order_detail.with_tax_price.to_s(:delimited) %>円</th>
           <th><%= order_detail.amount %></th>
           <th><%= order_detail.subtotal.to_s(:delimited) %>円</th>
-          <th><%= form_with model: order_detail, url: admin_path(order_detail), method: :patch do |f| %>
+          <th><%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
               <%= f.select :making_status, [["製作不可", :unable_to_make],["製作待ち", :waiting_for_make],["製作中", :now_making],["製作完了", :finished]] %>
               <%= f.submit "更新", class: "btn btn-success ml-4" %>
               <% end %></th>

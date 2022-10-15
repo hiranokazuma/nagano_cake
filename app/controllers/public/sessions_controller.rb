@@ -32,9 +32,9 @@ before_action :customer_state, only: [:create]
       # trueだった場合、退会しているのでサインアップ画面に遷移する
       flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
       redirect_to new_customer_registration_path
-      #falseだった場合、退会していないのでそのままcreateアクションを実行させる処理を実行する
     else
       flash[:notice] = "項目を入力してください。"
+      #falseだった場合、退会していないのでそのままcreateアクションを実行させる処理を実行する
     end
   end
   # If you have extra params to permit, append them to the sanitizer.

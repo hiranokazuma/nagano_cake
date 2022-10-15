@@ -4,7 +4,6 @@
   <h2><span class="mgr-10"><%= @customer.last_name %> </span><%= @customer.first_name %>さんの会員情報編集</h2>
 <br>
 <br>
-
 <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
   <% if @customer.errors.any? %>
   <div id="error_explanation">
@@ -17,7 +16,6 @@
   </div>
   <% end %>
 <br>
-
   <div class="row">
     <div class="col-sm-3">
       <h5>会員ID</h5>
@@ -27,7 +25,6 @@
     </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
       <h5>氏名</h5>
@@ -41,7 +38,6 @@
       </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
       <h5>フリガナ</h5>
@@ -55,7 +51,6 @@
       </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
       <h5>郵便番号</h5>
@@ -65,7 +60,6 @@
     </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
       <h5>住所</h5>
@@ -75,7 +69,6 @@
     </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
       <h5>電話番号</h5>
@@ -85,7 +78,6 @@
     </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
       <h5>メールアドレス</h5>
@@ -95,23 +87,30 @@
     </div>
   </div>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3">
     <h5>会員ステータス</h5>
     </div>
     <div class="col-sm-5 btn-group" data-toggle="buttons">
+      <% if @customer.is_deleted == true %>
       <label class="btn btn-outline-primary" style="width:50%">
-        <h5><%= f.radio_button :is_active, 1, {checked: true} %>有効</h5>
+        <h5><%= f.radio_button :is_deleted, 1, {checked: true} %>有効</h5>
       </label>
       <label class="btn btn-outline-danger" style="width:50%">
-        <h5><%= f.radio_button :is_active, 0, {} %>退会</h5>
+        <h5><%= f.radio_button :is_deleted, 0, {} %>退会</h5>
       </label>
+      <% elsif @customer.is_deleted == false %>
+      <label class="btn btn-outline-primary" style="width:50%">
+        <h5><%= f.radio_button :is_deleted, 1, {} %>有効</h5>
+      </label>
+      <label class="btn btn-outline-danger" style="width:50%">
+        <h5><%= f.radio_button :is_deleted, 0, {checked: true} %>退会</h5>
+      </label>
+      <% end %>
     </div>
   </div>
 <br>
 <br>
-
   <div class="form-group row">
     <div class="col-sm-3"></div>
     <div class="col-sm-5">
@@ -120,6 +119,4 @@
   </div>
 <% end %>
 </div>
-<br>
-<br>
 <br>

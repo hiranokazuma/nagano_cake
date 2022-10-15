@@ -41,9 +41,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
+
     get 'orders/:id' => 'orders#show'
     patch 'orders/:id' => 'orders#update'
-    patch 'order_details/:id' => 'order_details#update'
+    resources :order_details, only: [:update]
+
 
 
     resources :customers, except:[:new, :create, :destroy]

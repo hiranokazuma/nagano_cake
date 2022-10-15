@@ -2,21 +2,22 @@
   <div class="d-grid gap-2 col-5 mx-auto">
     <h2>会員ログイン</h2>
   </div>
+<br>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="row">
     <div class="d-grid gap-2 col-5 mx-auto">
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field h5">
+        <%= f.label :email %><br>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %>
       </div>
     </div>
   </div>
 <br>
   <div class="row">
     <div class="d-grid gap-2 col-5 mx-auto">
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class="field h5">
+        <%= f.label :password %><br>
+        <%= f.password_field :password, autocomplete: "current-password", size: 20 %>
       </div>
     </div>
   </div>
@@ -24,7 +25,7 @@
   <div class="row">
     <div class="d-grid gap-2 col-5 mx-auto">
     <% if devise_mapping.rememberable? %>
-      <div class="field">
+      <div class="field h5">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
       </div>
@@ -36,19 +37,22 @@
     <div class="d-grid gap-2 col-5 mx-auto">
       <div class="actions">
         <%= f.submit "ログイン", class: "btn btn-lg btn-primary btn-block"  %>
+        <% end %>
       </div>
     </div>
-      <% end %>
   </div>
+<br>
+<br>
 <br>
 <br>
   <div class="row">
     <div class="d-grid gap-2 col-5 mx-auto">
       <h3>会員登録がお済みではない方</h3>
     <br>
+    <br>
     <%= link_to "新規会員登録", new_customer_registration_path, class: "btn btn-lg btn-primary btn-block" %>
-
     </div>
   </div>
+<br>
 <br>
 </div>

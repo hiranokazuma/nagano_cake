@@ -47,7 +47,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index #注文履歴一覧
-    @orders = current_customer.orders
+    @orders = current_customer.orders.page(params[:page]).per(10)
     @cart_items = current_customer.cart_items
   end
 

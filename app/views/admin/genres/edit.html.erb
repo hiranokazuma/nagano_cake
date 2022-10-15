@@ -1,14 +1,13 @@
 <h1>Admin::Genres#edit</h1>
 
-<div class="container">
+<div class="container mt-5">
 <h2>ジャンル編集</h2>
 <br>
-</div>
-  <div class="container mt-5">
-    <%= form_with model: @genre, url: admin_genre_path, class: "form-inline" do |f| %>
+<br>
+  <div class="row">
       <% if @genre.errors.any? %>
       <div id="error_explanation">
-        <h2><%= @genre.errors.count %>errors prohibited this genre from being saved:</h2>
+        <h3><%= @genre.errors.count %>errors prohibited this genre from being saved:</h3>
         <ul>
           <% @genre.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -16,12 +15,17 @@
         </ul>
       </div>
       <% end %>
-      <div class="form-group mr-5">
+  </div>
+    <%= form_with model: @genre, url: admin_genre_path, class: "form-inline" do |f| %>
+      <div class="col-2 form-inline h5">
         <label for="genre_name">ジャンル名</label>
       </div>
-      <div class="form-group mr-5">
+      <div class="col-2 form-inline mr-5 h5">
         <%= f.text_field :name, class: "form-control", autocomplete: 'off'%>
       </div>
+      <div class="col-2 form-inline ml-5 h5">
         <%= f.submit '　変更を保存　', class: "btn btn-success btn-lg"%>
+      </div>
     <% end %>
-  </div>
+</div>
+<br>
