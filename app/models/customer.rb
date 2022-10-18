@@ -18,9 +18,9 @@ class Customer < ApplicationRecord
   has_many :addresses
 
  # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないように
- # is_deletedがtrueならtrueを返す
+ # is_deletedがfalseならtrueを返す
   def active_for_authentication?
-    super && (is_deleted == true)
+    super && (self.is_deleted == false)
   end
 
   def full_name

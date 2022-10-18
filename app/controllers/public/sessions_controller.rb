@@ -27,10 +27,10 @@ before_action :customer_state, only: [:create]
     ## アカウントを取得できなかった場合、このメソッドを終了する
     return if !@customer
     ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
-    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
+    if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
       ## 【処理内容3】「1」と「2」の処理が真(true)だった場合、そのアカウントのis_deletedカラムに格納されている値を確認し
       # trueだった場合、退会しているのでサインアップ画面に遷移する
-      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+      flash[:alret] = "退会済みです。再度ご登録をしてご利用ください。"
       redirect_to new_customer_registration_path
     else
       flash[:notice] = "項目を入力してください。"

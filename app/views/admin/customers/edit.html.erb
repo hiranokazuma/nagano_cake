@@ -92,19 +92,19 @@
     <h5>会員ステータス</h5>
     </div>
     <div class="col-sm-5 btn-group" data-toggle="buttons">
-      <% if @customer.is_deleted == true %>
+      <% if @customer.is_deleted == false %>
       <label class="btn btn-outline-primary" style="width:50%">
-        <h5><%= f.radio_button :is_deleted, 1, {checked: true} %>有効</h5>
+        <h5><%= f.radio_button :is_deleted, 0, checked: true %>有効</h5>
       </label>
       <label class="btn btn-outline-danger" style="width:50%">
-        <h5><%= f.radio_button :is_deleted, 0, {} %>退会</h5>
+        <h5><%= f.radio_button :is_deleted, 1, {} %>退会</h5>
       </label>
-      <% elsif @customer.is_deleted == false %>
+      <% elsif @customer.is_deleted == true %>
       <label class="btn btn-outline-primary" style="width:50%">
-        <h5><%= f.radio_button :is_deleted, 1, {} %>有効</h5>
+        <h5><%= f.radio_button :is_deleted, 0, {} %>有効</h5>
       </label>
       <label class="btn btn-outline-danger" style="width:50%">
-        <h5><%= f.radio_button :is_deleted, 0, {checked: true} %>退会</h5>
+        <h5><%= f.radio_button :is_deleted, 1, checked: true %>退会</h5>
       </label>
       <% end %>
     </div>
